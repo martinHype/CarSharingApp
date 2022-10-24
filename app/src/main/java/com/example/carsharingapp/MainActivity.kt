@@ -18,11 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        try {
-            getMyUsers()
-        }catch (e:Exception){
-            binding?.textoutput?.text = e.message
-        }
 
         binding?.klik?.setOnClickListener {
             var intent = Intent(this,RegistrationForm::class.java)
@@ -31,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getMyUsers() {
+    /*private fun getMyUsers() {
         val retrofiBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(BASE_URL)
@@ -53,5 +48,5 @@ class MainActivity : AppCompatActivity() {
                 binding?.textoutput?.text = t.message
             }
         })
-    }
+    }*/
 }

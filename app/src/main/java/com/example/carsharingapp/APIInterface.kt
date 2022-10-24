@@ -8,10 +8,8 @@ import retrofit2.http.POST
 
 interface APIInterface {
 
-    @GET("get_users?format=json")
-    fun getData(): Call<List<UserItem>>
 
     @Headers("Content-Type: application/json")
-    @POST("register")
-    fun createUser(@Body user:User):Call<User>
+    @POST("api/register")
+    fun createUser(@Body user:RegistrationUser):Call<RegistrationResponseUser>
 }
