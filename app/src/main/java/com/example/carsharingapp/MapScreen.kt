@@ -3,9 +3,9 @@ package com.example.carsharingapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MapsScreen : AppCompatActivity() {
+class MapScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps_screen)
+        setContentView(R.layout.activity_map_screen)
     }
 }
