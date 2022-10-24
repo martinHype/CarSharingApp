@@ -1,13 +1,9 @@
 package com.example.carsharingapp
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import com.example.carsharingapp.databinding.ActivityRegistrationFormBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,10 +26,12 @@ class RegistrationForm : AppCompatActivity() {
             val password2 = binding?.registrationRepeatPasswordInput?.text.toString()
             val username = email.subSequence(0,email.indexOf('@')).toString()
             val response = ServiceBuilder.buildService(APIInterface::class.java)
+            var mapintent = Intent(this,MapScreen::class.java)
             response.createUser(RegistrationUser(email,username,firstName,lastName,mobilePhone,password,password2))
                 .enqueue(object : Callback<RegistrationResponseUser>{
                     override fun onResponse(call: Call<RegistrationResponseUser>, thisresponse: Response<RegistrationResponseUser>) {
-                        binding?.registrationCheckbox?.text = thisresponse.body().toString()
+                        startActivity(mapintent)
+
                     }
 
                     override fun onFailure(call: Call<RegistrationResponseUser>, t: Throwable) {
