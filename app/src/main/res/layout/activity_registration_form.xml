@@ -9,15 +9,14 @@
     tools:context=".RegistrationForm">
 
 
-
     <LinearLayout
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/registration_FirstNameLabel"
-        app:layout_constraintBottom_toTopOf="@id/registration_FirstNameLabel"
         android:layout_width="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:gravity="left"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/registration_FirstNameLabel"
+        app:layout_constraintStart_toStartOf="@id/registration_FirstNameLabel"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/RegistartionSignUpView"
@@ -27,14 +26,16 @@
             android:textColor="@color/primaryBlue"
             android:textSize="25sp"
             android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="Create account to continue!"/>
+            android:text="Create account to continue!"
+            android:textSize="12sp" />
 
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/registration_FirstNameLabel"
         android:layout_width="wrap_content"
@@ -66,15 +67,14 @@
         android:id="@+id/registration_FirstNameError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="@color/error"
-        android:visibility="gone"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
         android:text="First name is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/registration_LastNameLabel"
-        app:layout_constraintStart_toStartOf="@id/registration_FirstNameInput"
-        />
+        app:layout_constraintStart_toStartOf="@id/registration_FirstNameInput" />
 
     <TextView
         android:id="@+id/registration_LastNameLabel"
@@ -101,31 +101,31 @@
         app:layout_constraintBottom_toTopOf="@+id/registration_LastNameError"
         app:layout_constraintEnd_toEndOf="@+id/registration_emailInput"
         app:layout_constraintStart_toStartOf="@id/registration_mobilenumberLabel" />
+
     <TextView
         android:id="@+id/registration_LastNameError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="@color/error"
-        android:visibility="gone"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
         android:text="Last name is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/registration_emailLabel"
-        app:layout_constraintStart_toStartOf="@id/registration_LastNameInput"
-        />
+        app:layout_constraintStart_toStartOf="@id/registration_LastNameInput" />
 
     <TextView
         android:id="@+id/registration_emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="112dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="1dp"
         android:text="Email Address"
-        app:layout_constraintBottom_toTopOf="@id/registration_emailInput"
-        app:layout_constraintStart_toStartOf="@id/registration_passwordInput"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        android:layout_marginBottom="1dp"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/registration_emailInput"
+        app:layout_constraintStart_toStartOf="@id/registration_passwordInput" />
 
     <EditText
         android:id="@+id/registration_emailInput"
@@ -145,27 +145,26 @@
         android:id="@+id/registration_emailError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="@color/error"
-        android:visibility="gone"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
         android:text="Email address is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/registration_mobilenumberLabel"
-        app:layout_constraintStart_toStartOf="@id/registration_emailInput"
-        />
+        app:layout_constraintStart_toStartOf="@id/registration_emailInput" />
 
     <TextView
         android:id="@+id/registration_mobilenumberLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:text="Mobile Number"
-        app:layout_constraintBottom_toTopOf="@id/registration_mobilenumberInput"
-        app:layout_constraintStart_toStartOf="@id/registration_passwordInput"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        android:layout_marginBottom="1dp"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/registration_mobilenumberInput"
+        app:layout_constraintStart_toStartOf="@id/registration_passwordInput" />
 
     <EditText
         android:id="@+id/registration_mobilenumberInput"
@@ -180,31 +179,31 @@
         app:layout_constraintBottom_toTopOf="@id/registration_mobilenumberError"
         app:layout_constraintEnd_toEndOf="@id/registration_button"
         app:layout_constraintStart_toStartOf="@id/registration_passwordLabel" />
+
     <TextView
         android:id="@+id/registration_mobilenumberError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="@color/error"
-        android:visibility="gone"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
         android:text="Mobile number is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/registration_passwordLabel"
-        app:layout_constraintStart_toStartOf="@id/registration_mobilenumberInput"
-        />
+        app:layout_constraintStart_toStartOf="@id/registration_mobilenumberInput" />
 
     <TextView
         android:id="@+id/registration_passwordLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:text="Password"
-        app:layout_constraintBottom_toTopOf="@id/registration_passwordInput"
-        app:layout_constraintStart_toStartOf="@id/registration_passwordInput"
-        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="17sp"
-        android:layout_marginBottom="1dp"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/registration_passwordInput"
+        app:layout_constraintStart_toStartOf="@id/registration_passwordInput" />
 
     <EditText
         android:id="@+id/registration_passwordInput"
@@ -224,15 +223,14 @@
         android:id="@+id/registration_passwordError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="9sp"
-        android:textColor="@color/error"
-        android:visibility="gone"
-        android:layout_marginBottom="5dp"
         android:layout_marginStart="7dp"
+        android:layout_marginBottom="5dp"
         android:text="Password is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/registration_repeatPasswordLabel"
-        app:layout_constraintStart_toStartOf="@id/registration_passwordInput"
-        />
+        app:layout_constraintStart_toStartOf="@id/registration_passwordInput" />
 
     <TextView
         android:id="@+id/registration_repeatPasswordLabel"
@@ -256,12 +254,12 @@
         android:minHeight="48dp"
         android:padding="12dp"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@id/registration_repeatPasswordError"
+        app:layout_constraintBottom_toTopOf="@id/registration_passwordRepeatError"
         app:layout_constraintEnd_toEndOf="@id/registration_button"
         app:layout_constraintStart_toStartOf="@id/registration_button" />
 
     <TextView
-        android:id="@+id/registration_repeatPasswordError"
+        android:id="@+id/registration_passwordRepeatError"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
@@ -282,6 +280,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/registration_button"
         app:layout_constraintStart_toStartOf="@id/registration_button" />
+
     <Button
         android:id="@+id/registration_button"
         android:layout_width="match_parent"
@@ -290,37 +289,40 @@
         android:backgroundTint="@color/primaryBlue"
         android:padding="15dp"
         android:text="Sign Up"
-        android:textColor="@color/white"
         android:textAllCaps="false"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/registration_linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
+
     <LinearLayout
         android:id="@+id/registration_linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center"
-        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Already have an account?"/>
+            android:text="Already have an account?" />
+
         <TextView
+            android:id="@+id/registration_SignInButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
+            android:clickable="true"
             android:text="Sign In"
             android:textColor="@color/primaryBlue"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

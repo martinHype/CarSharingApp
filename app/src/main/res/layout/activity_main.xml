@@ -4,31 +4,186 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/klik"
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="klik"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/textoutput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/mainscreenicon"
+        app:layout_constraintBottom_toTopOf="@+id/mainscreen_signInlayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
+
+
+
+    <LinearLayout
+        android:id="@+id/mainscreen_signInlayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_emailLabel"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_emailInput"
+        app:layout_constraintEnd_toEndOf="@id/mainscreen_emailInput"
+        android:orientation="vertical"
+        android:layout_marginBottom="25dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to continue!"
+            android:textColor="@color/grey"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/mainscreen_emailLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintStart_toEndOf="@+id/klik"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Email Address"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_emailInput"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_passwordInput"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:layout_marginBottom="1dp"/>
 
+    <EditText
+        android:id="@+id/mainscreen_emailInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputfield_background"
+        android:hint="Enter your email"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_emailError"
+        app:layout_constraintEnd_toEndOf="@id/mainscreen_signInButton"
+        app:layout_constraintStart_toStartOf="@+id/mainscreen_passwordInput" />
+
+    <TextView
+        android:id="@+id/mainscreen_emailError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="9sp"
+        android:textColor="@color/error"
+        android:visibility="invisible"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="7dp"
+        android:text="Email address is required"
+        app:layout_constraintBottom_toTopOf="@id/registration_repeatPasswordLabel"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_emailInput"
+        />
+    <TextView
+        android:id="@+id/registration_repeatPasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:text="Password"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_passwordInput"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_passwordInput" />
+
+    <EditText
+        android:id="@+id/mainscreen_passwordInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/inputfield_background"
+        android:hint="Enter your password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:padding="12dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_passwordError"
+        app:layout_constraintEnd_toEndOf="@id/mainscreen_signInButton"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_signInButton" />
+
+    <TextView
+        android:id="@+id/mainscreen_passwordError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginBottom="10dp"
+        android:text="Password is required"
+        android:textColor="@color/error"
+        android:textSize="9sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_checkbox"
+        app:layout_constraintStart_toStartOf="@id/mainscreen_passwordInput" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Forgot password?"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/primaryBlue"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_checkbox"
+        app:layout_constraintEnd_toEndOf="@+id/mainscreen_signInButton"
+        app:layout_constraintStart_toStartOf="@+id/mainscreen_signInButton" />
+    <CheckBox
+        android:id="@+id/mainscreen_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Remember me"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/mainscreen_signInButton"
+        app:layout_constraintStart_toStartOf="@+id/mainscreen_signInButton" />
+    <Button
+        android:id="@+id/mainscreen_signInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="7dp"
+        android:backgroundTint="@color/primaryBlue"
+        android:padding="15dp"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/mainscreen_linearLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/mainscreen_linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/mainscreen_signInButton"
+        app:layout_constraintStart_toStartOf="@+id/mainscreen_signInButton">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?" />
+
+        <TextView
+            android:id="@+id/mainScreen_signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Sign Up"
+            android:clickable="true"
+            android:textColor="@color/primaryBlue"
+            android:textStyle="bold" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

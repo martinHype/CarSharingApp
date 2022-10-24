@@ -14,3 +14,13 @@ data class RegistrationResponseUser(
     var respone:String,
     var token:String
 )
+
+data class LoginInUser(
+    var username:String,
+    var password:String
+)
+
+data class LoginInResponseUser(
+    var token:String
+)
+
