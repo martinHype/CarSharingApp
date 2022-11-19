@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     private var binding:ActivityMainBinding? = null
     //val BASE_URL:String = "http://192.168.100.5:8000/"
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
@@ -26,7 +27,9 @@ class MainActivity : AppCompatActivity() {
 
 
         binding?.mainscreenSignInButton?.setOnClickListener {
-            var validated = true
+            val intent = Intent(this,MapScreen::class.java)
+            startActivity(intent)
+            /*var validated = true
             val email = binding?.mainscreenEmailInput?.text.toString()
             val password = binding?.mainscreenPasswordInput?.text.toString()
             val intent = Intent(this,MapScreen::class.java)
@@ -70,7 +73,7 @@ class MainActivity : AppCompatActivity() {
                             TODO("Not yet implemented")
                         }
                     })
-            }
+            }*/
 
         }
 
