@@ -2,7 +2,9 @@ package com.example.carsharingapp
 
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
@@ -14,11 +16,15 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior.BottomSheetCa
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.android.gestures.MoveGestureDetector
+import com.mapbox.geojson.Point
 import com.mapbox.maps.CameraOptions
 import com.mapbox.maps.MapView
 import com.mapbox.maps.Style
 import com.mapbox.maps.extension.style.expressions.dsl.generated.interpolate
 import com.mapbox.maps.plugin.LocationPuck2D
+import com.mapbox.maps.plugin.annotation.annotations
+import com.mapbox.maps.plugin.annotation.generated.PointAnnotationOptions
+import com.mapbox.maps.plugin.annotation.generated.createPointAnnotationManager
 import com.mapbox.maps.plugin.compass.compass
 import com.mapbox.maps.plugin.gestures.OnMoveListener
 import com.mapbox.maps.plugin.gestures.gestures
@@ -26,10 +32,13 @@ import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListene
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
 import com.mapbox.maps.plugin.scalebar.scalebar
+import com.mapbox.maps.viewannotation.ViewAnnotationManager
+import com.mapbox.maps.viewannotation.viewAnnotationOptions
 
 class MapScreen : AppCompatActivity(),PermissionsListener{
     private lateinit var permissionsManager:PermissionsManager
     private lateinit var mapView: MapView
+    private lateinit var viewAnnotationManager: ViewAnnotationManager
     private var binding:ActivityMapScreenBinding? = null
     private val onIndicatorBearingChangedListener = OnIndicatorBearingChangedListener{
         mapView.getMapboxMap().setCamera(CameraOptions.Builder().bearing(it).build())
@@ -61,7 +70,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
         setContentView(binding?.root)
 
         mapView = findViewById(R.id.mapView)
-
+        viewAnnotationManager = binding?.mapView?.viewAnnotationManager!!
         if(PermissionsManager.areLocationPermissionsGranted(this)){
             onMapReady()
         }else{
@@ -85,8 +94,35 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
         ) {
             initLocationComponent()
             setupGesturesListener()
+            try{
+                addAnnotationView(Point.fromLngLat(18.155048825458078,47.98636542288173),"20€/h",R.drawable.mercedes)
+            }catch (exception:Exception){
+                Toast.makeText(this,exception.message.toString(),Toast.LENGTH_LONG).show()
+            }
+
+
         }
     }
+
+
+    private fun addAnnotationView(point:Point,text:String,resource:Int){
+        val viewAnnotation = viewAnnotationManager.addViewAnnotation(
+            resId = R.layout.marker,
+            options = viewAnnotationOptions {
+                geometry(point)
+                allowOverlap(true)
+            }
+        )
+        val textView = viewAnnotation.findViewById<TextView>(R.id.annotation)
+        textView.text = text
+        viewAnnotation.setOnClickListener{
+            Toast.makeText(this, "message", Toast.LENGTH_SHORT).show()
+        }
+        val imageView = viewAnnotation.findViewById<ImageView>(R.id.brandImage)
+        imageView.setImageResource(resource)
+    }
+
+
 
     private fun setupGesturesListener() {
         mapView.gestures.addOnMoveListener(onMoveListener)
