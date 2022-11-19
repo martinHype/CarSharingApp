@@ -40,6 +40,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
     private lateinit var mapView: MapView
     private lateinit var viewAnnotationManager: ViewAnnotationManager
     private var binding:ActivityMapScreenBinding? = null
+    private var drawerOpen:Boolean = false
     private val onIndicatorBearingChangedListener = OnIndicatorBearingChangedListener{
         mapView.getMapboxMap().setCamera(CameraOptions.Builder().bearing(it).build())
     }
@@ -116,7 +117,10 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
         val textView = viewAnnotation.findViewById<TextView>(R.id.annotation)
         textView.text = text
         viewAnnotation.setOnClickListener{
-            Toast.makeText(this, "message", Toast.LENGTH_SHORT).show()
+            if(!drawerOpen){
+                binding?.button?.callOnClick()
+                drawerOpen = true
+            }
         }
         val imageView = viewAnnotation.findViewById<ImageView>(R.id.brandImage)
         imageView.setImageResource(resource)
@@ -160,7 +164,11 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
     }
 
     override fun onBackPressed() {
-        binding?.button?.callOnClick()
+        if(drawerOpen){
+            binding?.button?.callOnClick()
+            drawerOpen = false
+
+        }
     }
     override fun onStart() {
         super.onStart()

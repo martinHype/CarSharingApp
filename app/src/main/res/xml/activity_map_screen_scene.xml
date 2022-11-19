@@ -27,5 +27,15 @@
             android:layout_width="match_parent"
             android:id="@+id/constraintLayout"
             motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/imagebackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:alpha="0.7" />
     </ConstraintSet>
 </MotionScene>
