@@ -10,15 +10,29 @@
 
     <com.mapbox.maps.MapView
         android:id="@+id/mapView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        mapbox:mapbox_cameraTargetLat="40.7128"
-        mapbox:mapbox_cameraTargetLng="-74.0060"
-        mapbox:mapbox_cameraZoom="9.0" />
+        mapbox:mapbox_cameraZoom="7.0">
+
+    </com.mapbox.maps.MapView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="8dp"
+        mapbox:srcCompat="@drawable/gps" />
+
 
     <ImageView
         android:id="@+id/imagebackground"
@@ -27,6 +41,7 @@
         android:alpha="0.3"
         android:src="@color/white"
         android:visibility="invisible"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,17 +52,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/cardbackground"
+        android:elevation="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:id="@+id/imageViewCar"
+            android:layout_width="210dp"
+            android:layout_height="130dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/carspecs"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/car" />
 
@@ -61,6 +75,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/txtCar_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mercedes Benz"
@@ -69,6 +84,7 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtCar_model"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="C-Class sedan"
@@ -76,6 +92,7 @@
                 android:textSize="15sp" />
 
             <TextView
+                android:id="@+id/txtLicensePlate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/spz_background"
@@ -121,6 +138,7 @@
                     android:paddingStart="10dp">
 
                     <TextView
+                        android:id="@+id/txtCar_owner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Janko Hrasko"
@@ -183,6 +201,7 @@
                     android:src="@drawable/mappin" />
 
                 <TextView
+                    android:id="@+id/txtActual_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -208,6 +227,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
+                        android:id="@+id/txtPrice_perDay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="20€"
@@ -234,8 +254,8 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:text="Rent now"
-                    android:textColor="@color/white"
                     android:textAllCaps="false"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
