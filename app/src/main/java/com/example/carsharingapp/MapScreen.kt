@@ -20,6 +20,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.view.WindowCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.example.carsharingapp.databinding.ActivityMapScreenBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -63,7 +64,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
     private lateinit var mapboxMap: MapboxMap
     private lateinit var viewAnnotationManager: ViewAnnotationManager
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
-
+    private lateinit var drawerLayout:DrawerLayout
 
     private var binding:ActivityMapScreenBinding? = null
     private val carArray:MutableMap<Int,Car_model> = mutableMapOf()
@@ -98,7 +99,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
         setContentView(binding?.root)
 
         fillCars();
-
+        drawerLayout = binding?.root!!
         mapView = findViewById(R.id.mapView)
         mapboxMap = mapView.getMapboxMap()
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
@@ -108,6 +109,9 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
         }else{
             permissionsManager = PermissionsManager(this)
             permissionsManager.requestLocationPermissions(this)
+        }
+        binding?.floatingMenuButton?.setOnClickListener {
+            drawerLayout.open()
         }
 
 
@@ -254,6 +258,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener{
             binding?.button?.callOnClick()
             drawerOpen = false
         }
+        drawerLayout.close()
     }
     override fun onStart() {
         super.onStart()
