@@ -8,6 +8,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.carsharingapp.databinding.ActivityRegistrationFormBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -63,10 +64,24 @@ class RegistrationForm : AppCompatActivity() {
                 if(validated){
                     val mapintent = Intent(this, MapScreen::class.java)
                     val response = ServiceBuilder.buildService(APIInterface::class.java)
-                    response.createUser(RegistrationUser(emailinput,username,firstname,lastname,mobilenumber,password,password2))
+                    response.createUser(RegistrationUser(firstname,lastname,emailinput,mobilenumber,password))
                         .enqueue(object : Callback<RegistrationResponseUser>{
-                            override fun onResponse(call: Call<RegistrationResponseUser>, thisresponse: Response<RegistrationResponseUser>) {
-                                startActivity(mapintent)
+                            override fun onResponse(call: Call<RegistrationResponseUser>, response: Response<RegistrationResponseUser>) {
+                                if(response.isSuccessful){
+                                    var recieved = response.body()
+                                    if(recieved != null){
+                                        Toast.makeText(applicationContext, "${recieved.response}", Toast.LENGTH_SHORT).show()
+                                        if(recieved.token != null){
+                                            val user = User(emailinput,firstname,lastname,mobilenumber,recieved.token,1)
+                                            val id = UsersDb.addUser(applicationContext,user)
+                                            if(id != -1L){
+                                                ServiceBuilder.currentUser = user
+                                                startActivity(mapintent)
+                                            }
+
+                                        }
+                                    }
+                                }
                             }
 
                             override fun onFailure(call: Call<RegistrationResponseUser>, t: Throwable) {

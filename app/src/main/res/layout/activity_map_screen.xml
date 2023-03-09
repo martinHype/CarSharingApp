@@ -14,11 +14,12 @@
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/nav_menu"
         android:fitsSystemWindows="true"/>
-<androidx.constraintlayout.motion.widget.MotionLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layoutDescription="@xml/activity_map_screen_scene"
-    tools:context=".MapScreen">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/activity_map_screen_scene"
+        tools:context=".MapScreen">
 
     <com.mapbox.maps.MapView
         android:id="@+id/mapView"
@@ -86,10 +87,11 @@
         <ImageView
             android:id="@+id/imageViewCar"
             android:layout_width="210dp"
-            android:layout_height="130dp"
+            android:layout_height="110dp"
+            android:layout_margin="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/car" />
+            />
 
         <LinearLayout
             android:id="@+id/carspecs"
@@ -224,7 +226,7 @@
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/mappin" />
+                    android:src="@drawable/mapmarker" />
 
                 <TextView
                     android:id="@+id/txtActual_location"
@@ -271,6 +273,7 @@
 
 
                 <Button
+                    android:id="@+id/rent_car"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -302,5 +305,5 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.motion.widget.MotionLayout>
+        </androidx.constraintlayout.motion.widget.MotionLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation("com.google.android.gms:play-services-location:18.0.0")
+
+
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.google.android.gms:play-services-maps:18.1.0'
@@ -54,5 +56,11 @@ dependencies {
     //mapbox dependencies
     implementation 'com.mapbox.maps:android:10.9.0'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-core:3.1.0'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+
+    //coil library
+    implementation("io.coil-kt:coil:2.2.2")
+
 
 }

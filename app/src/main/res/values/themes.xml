@@ -15,7 +15,7 @@
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <!--<item name="android:navigationBarColor">@android:color/transparent</item>-->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">

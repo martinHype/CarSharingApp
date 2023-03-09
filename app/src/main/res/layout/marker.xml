@@ -26,6 +26,6 @@
         app:layout_constraintStart_toStartOf="@+id/annotation"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="5dp"
-        app:srcCompat="@drawable/mercedes" />
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
