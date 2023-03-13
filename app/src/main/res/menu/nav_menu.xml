@@ -4,22 +4,14 @@
     tools:showIn="navigation_view"
     >
     <item android:id="@+id/create_car"
-        android:title="Create car"
+        android:title="Add vehicle"
         />
     <item android:id="@+id/nav_message"
-        android:title="Message"/>
-    <item android:id="@+id/nav_sync"
-        android:title="Sync"/>
-    <item android:id="@+id/nav_trash"
-        android:title="Trash"/>
+        android:title="Manage cars"/>
+    <item android:id="@+id/nav_history"
+        android:title="History"/>
     <item android:id="@+id/nav_setting"
         android:title="Settings"/>
-    <item android:title="Profile">
-        <menu>
-            <item android:id="@+id/nav_login"
-                android:title="Login"/>
-        </menu>
-    </item>
     <item android:title="Comunicate">
         <menu>
             <item android:id="@+id/nav_share"

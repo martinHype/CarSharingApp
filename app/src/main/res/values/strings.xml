@@ -3,4 +3,22 @@
     <string name="mapbox_access_token">pk.eyJ1IjoibWFydGluYmF0IiwiYSI6ImNsMnB6a2Z1YTBidjgzZnBjeXhleGUzZDQifQ.YuflIZcligQ5Yr1or55iUg</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="fuel_type">
+        <item>Gasoline</item>
+        <item>Diesel</item>
+        <item>Hybrid</item>
+        <item>Electric</item>
+    </string-array>
+    <string-array name="body_type">
+        <item>City car</item>
+        <item>Hatchback</item>
+        <item>Coupe</item>
+        <item>Crossover</item>
+        <item>SUV</item>
+        <item>Cabriolet</item>
+    </string-array>
+    <string-array name="shifter_type">
+        <item>Automatic</item>
+        <item>Manual</item>
+    </string-array>
 </resources>

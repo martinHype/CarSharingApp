@@ -29,6 +29,8 @@ import com.mapbox.maps.dsl.cameraOptions
 import com.mapbox.maps.plugin.animation.MapAnimationOptions
 import com.mapbox.maps.plugin.animation.flyTo
 import com.mapbox.maps.plugin.compass.compass
+import com.mapbox.maps.plugin.gestures.OnMapClickListener
+import com.mapbox.maps.plugin.gestures.addOnMapClickListener
 import com.mapbox.maps.plugin.scalebar.scalebar
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,6 +40,7 @@ import java.io.ByteArrayOutputStream
 import java.io.IOException
 
 var mapView: MapView? = null
+var mapView2 : MapView? = null
 
 class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyclerViewEvent {
     //get actual location
@@ -55,18 +58,68 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
     var array:ArrayList<Uri> = mutableListOf<Uri>() as ArrayList<Uri>
     lateinit var adapter: Adapter
     var showspecs = false
+    lateinit var actualPosition:Point
+
     @SuppressLint("NotifyDataSetChanged", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateCarBinding.inflate(layoutInflater)
         setContentView(binding?.root)
 
-        var actualLatitude:Double = 0.0
-        var actualLongitude:Double = 0.0
+        val fuelArrayAdapter = ArrayAdapter.createFromResource(this,
+            R.array.fuel_type,
+            android.R.layout.simple_spinner_item)
+        fuelArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding?.fuelInputText?.adapter = fuelArrayAdapter
+
+        val bodyArrayAdapter = ArrayAdapter.createFromResource(this,
+            R.array.body_type,
+            android.R.layout.simple_spinner_item)
+        bodyArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding?.bodyInputText?.adapter = bodyArrayAdapter
+
+        val shifterArrayAdapter = ArrayAdapter.createFromResource(this,
+            R.array.shifter_type,
+            android.R.layout.simple_spinner_item)
+        shifterArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding?.shifterInputText?.adapter = shifterArrayAdapter
+
 
         var mapVisible = false
         val layout = binding?.layout
         layout?.visibility = View.GONE
+
+        mapView2 = binding?.createCarMap
+        var mapBox2 = mapView2?.getMapboxMap()
+        mapBox2?.loadStyleUri(Style.MAPBOX_STREETS)
+        mapView2?.scalebar?.enabled = false
+        mapView2?.compass?.enabled = false
+        mapBox2?.setCamera(
+            CameraOptions.Builder()
+                .zoom(14.0)
+                .build()
+        )
+        mapBox2?.loadStyleUri(
+            Style.MAPBOX_STREETS
+        )
+        fusedLoactionClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLoactionClient.lastLocation.addOnSuccessListener {
+            mapBox2?.flyTo(
+                cameraOptions {
+                    center(Point.fromLngLat(it.longitude,it.latitude))
+                        .zoom(15.0)
+                        .bearing(360.0)
+                        .build()
+                },
+                MapAnimationOptions.mapAnimationOptions {
+                    duration(100)
+                }
+            )
+            actualPosition = Point.fromLngLat(it.longitude,it.latitude)
+            getAddressOfPoistion()
+        }
+
+
 
         mapView = binding?.mapView
         var mapbox = mapView?.getMapboxMap()
@@ -76,63 +129,51 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
         mapbox?.setCamera(
             CameraOptions.Builder()
                 .zoom(14.0)
-                .bearing(180.0)
+                .bearing(210.0)
                 .build()
         )
         mapbox?.loadStyleUri(
             Style.MAPBOX_STREETS
         )
-        fusedLoactionClient = LocationServices.getFusedLocationProviderClient(this)
 
-        //onclick event when map is displayed to select location
-        binding?.showmap?.setOnClickListener {
-            fusedLoactionClient.lastLocation.addOnSuccessListener {
+        mapBox2?.addOnMapClickListener(OnMapClickListener {
                 mapbox?.flyTo(
                     cameraOptions {
-                        center(Point.fromLngLat(it.longitude,it.latitude))
+                        center(Point.fromLngLat(actualPosition.longitude(),actualPosition.latitude()))
                             .zoom(17.0)
-                            .bearing(180.0)
+                            .bearing(360.0)
+                            .build()
                     },
                     MapAnimationOptions.mapAnimationOptions {
                         duration(100)
                     }
                 )
-
-            }
             layout?.visibility = View.VISIBLE
-
             mapVisible = true
-            }
+            return@OnMapClickListener true
+        })
 
+
+        //onclick event when map is displayed to select location
 
         //receive address from api by latitude and longitude
         binding?.selectPosition?.setOnClickListener {
             val position = mapbox?.cameraState?.center
-            actualLatitude = position?.latitude()!!
-            actualLongitude = position.longitude()
-            Toast.makeText(applicationContext, "this", Toast.LENGTH_SHORT).show()
+            actualPosition = position!!
 
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.mapbox.com/geocoding/v5/mapbox.places/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-            val url:String = "${actualLongitude},${actualLatitude}.json?"
-            val response = retrofit.create(APIInterface::class.java)
-            response.getAdress(url,"pk.eyJ1IjoibWFydGluYmF0IiwiYSI6ImNsMnB6a2Z1YTBidjgzZnBjeXhleGUzZDQifQ.YuflIZcligQ5Yr1or55iUg")
-                .enqueue(object : Callback<MapboxResponse>{
-                    override fun onResponse(
-                        call: Call<MapboxResponse>,
-                        response: retrofit2.Response<MapboxResponse>
-                    ) {
-                        if(response.isSuccessful){
-                            binding?.showmap?.text = "${response?.body()?.features?.get(0)?.place_name}"
-                        }
-                    }
+            mapBox2?.flyTo(
+                cameraOptions {
+                    center(Point.fromLngLat(actualPosition.longitude(),actualPosition.latitude()))
+                        .zoom(15.0)
+                        .bearing(360.0)
+                        .build()
+                },
+                MapAnimationOptions.mapAnimationOptions {
+                    duration(100)
+                }
+            )
 
-                    override fun onFailure(call: Call<MapboxResponse>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
-                })
+            getAddressOfPoistion()
             binding?.layout?.visibility = View.GONE
 
 
@@ -144,18 +185,6 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
             it.visibility = View.GONE
         }
 
-
-        binding?.showSpecs?.setOnClickListener {
-            if(!showspecs){
-                binding?.linearLayout?.visibility = View.VISIBLE
-                binding?.showSpecs?.setImageResource(R.drawable.minus)
-
-            }else{
-                binding?.linearLayout?.visibility = View.GONE
-                binding?.showSpecs?.setImageResource(R.drawable.plus)
-            }
-            showspecs = !showspecs
-        }
 
 
         //receive images from local gallery and store them in array<Uri>
@@ -239,7 +268,7 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
                 counter++
 
             }
-            response.createCar(CarRegister(brand,model,"yellow","2022",ServiceBuilder.currentUser?.email.toString(),registrationPlate,price.toInt(),actualLatitude,actualLongitude))
+            response.createCar(CarRegister(brand,model,"yellow","2022",ServiceBuilder.currentUser?.email.toString(),registrationPlate,price.toInt(),actualPosition.latitude(),actualPosition.longitude()))
                 .enqueue(object : Callback<Response>{
                     override fun onResponse(
                         call: Call<Response>,
@@ -248,7 +277,7 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
                         if(response.isSuccessful){
                             addImages(response.body()?.response)
                             addSpecs(response.body()?.response)
-                            finish()
+                            addTerms(response.body()?.response)
                         }
                     }
 
@@ -263,6 +292,34 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
 
 
     }
+
+
+
+    private fun getAddressOfPoistion(){
+        val retrofit = Retrofit.Builder()
+            .baseUrl("https://api.mapbox.com/geocoding/v5/mapbox.places/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+        val url:String = "${actualPosition.longitude()},${actualPosition.latitude()}.json?"
+        val response = retrofit.create(APIInterface::class.java)
+        response.getAdress(url,"pk.eyJ1IjoibWFydGluYmF0IiwiYSI6ImNsMnB6a2Z1YTBidjgzZnBjeXhleGUzZDQifQ.YuflIZcligQ5Yr1or55iUg")
+            .enqueue(object : Callback<MapboxResponse>{
+                override fun onResponse(
+                    call: Call<MapboxResponse>,
+                    response: retrofit2.Response<MapboxResponse>
+                ) {
+                    if(response.isSuccessful){
+                        binding?.showmap?.text = "${response?.body()?.features?.get(0)?.place_name}"
+                    }
+                }
+
+                override fun onFailure(call: Call<MapboxResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
+
+
     //method that will upload images in database
     private fun addImages(car_id: String?) {
         var images:MutableList<Image> = mutableListOf()
@@ -303,10 +360,10 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
 
     private fun addSpecs(car_id: String?){
         var list:ArrayList<Specs> = mutableListOf<Specs>() as ArrayList<Specs>
-        list.add(Specs(1,binding?.fuelInputText?.text.toString()))
-        list.add(Specs(2,binding?.bodyInputText?.text.toString()))
+        list.add(Specs(1,binding?.fuelInputText?.selectedItem.toString()))
+        list.add(Specs(2,binding?.bodyInputText?.selectedItem.toString()))
         list.add(Specs(3,binding?.seatsInputText?.text.toString()))
-        list.add(Specs(4,binding?.shifterInputText?.text.toString()))
+        list.add(Specs(4,binding?.shifterInputText?.selectedItem.toString()))
         list.add(Specs(5,binding?.colorInputText?.text.toString()))
         list.add(Specs(6,binding?.yearInputText?.text.toString()))
         list.add(Specs(7,binding?.milesInputText?.text.toString()))
@@ -333,7 +390,33 @@ class create_car : AppCompatActivity(),AdapterView.OnItemSelectedListener, recyc
                 }
             })
     }
-    
+
+
+    private fun addTerms(car_id: String?){
+        var list:ArrayList<Terms> = mutableListOf<Terms>() as ArrayList<Terms>
+        list.add(Terms(1,if(binding?.chceckBox1?.isChecked == true)1 else 0))
+        list.add(Terms(2,if(binding?.chceckBox2?.isChecked == true)1 else 0))
+        list.add(Terms(3,if(binding?.chceckBox3?.isChecked == true)1 else 0))
+        list.add(Terms(4,if(binding?.chceckBox4?.isChecked == true)1 else 0))
+
+        val response = ServiceBuilder.buildService(APIInterface ::class.java)
+        response.addTerms(ServiceBuilder.currentUser!!.token,postTerms(car_id!!.toInt(),list))
+            .enqueue(object : Callback<Response>{
+                override fun onResponse(
+                    call: Call<Response>,
+                    response: retrofit2.Response<Response>
+                ) {
+                    if (response.isSuccessful){
+                        Toast.makeText(applicationContext, "success", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                }
+
+                override fun onFailure(call: Call<Response>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
+    }
 
 
 

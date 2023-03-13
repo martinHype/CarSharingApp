@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.mapbox.maps.extension.style.expressions.dsl.generated.switchCase
 
 class CarSpecsAdapter(private val array:ArrayList<CarSpecs>,private val context: Context): RecyclerView.Adapter<CarSpecsAdapter.AdapterViewHolder>() {
 
@@ -26,7 +27,21 @@ class CarSpecsAdapter(private val array:ArrayList<CarSpecs>,private val context:
     override fun onBindViewHolder(holder: AdapterViewHolder, position: Int) {
         holder.label.text = array[position].label
         holder.value.text = "${array[position].value}${array[position].unit}"
-        holder.icon.setImageResource(array[position].icon)
+        holder.icon.setImageResource(when(array[position].id){
+            1 -> R.drawable.fuel_icon
+            2 -> R.drawable.body_icon
+            3 -> R.drawable.seats_icon
+            4 -> R.drawable.shifter_icon
+            5 -> R.drawable.color_icon
+            6 -> R.drawable.year_icon
+            7 -> R.drawable.miles_icon
+            8 -> R.drawable.weight_icon
+            9 -> R.drawable.power_icon
+            10 -> R.drawable.consumption_icon
+            11 -> R.drawable.fuel_capacity_icon
+            12 -> R.drawable.engine_icon
+            else -> {R.drawable.fuel_icon}
+        })
     }
 
     override fun getItemCount(): Int {
@@ -67,7 +82,7 @@ class RentImagesAdapter(private val array: Array<String>?, private val context: 
     }
 }
 
-class TermsOfLoanAdapter(private val array: ArrayList<Terms>, private val context: Context):RecyclerView.Adapter<TermsOfLoanAdapter.AdapterViewHolder>(){
+class TermsOfLoanAdapter(private val array: ArrayList<CarTerms>, private val context: Context):RecyclerView.Adapter<TermsOfLoanAdapter.AdapterViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TermsOfLoanAdapter.AdapterViewHolder {
@@ -81,7 +96,7 @@ class TermsOfLoanAdapter(private val array: ArrayList<Terms>, private val contex
 
     override fun onBindViewHolder(holder: TermsOfLoanAdapter.AdapterViewHolder, position: Int) {
         holder.label.text = array!![position].label
-        if(array[position].value)
+        if(array[position].value == 1)
             holder.img.setImageResource(R.drawable.check_icon)
         else
             holder.img.setImageResource(R.drawable.not_icon)

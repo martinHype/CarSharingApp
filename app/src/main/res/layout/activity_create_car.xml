@@ -107,98 +107,175 @@
     tools:context=".create_car">
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     android:id="@+id/constrainLayoutFields"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:orientation="vertical"
     >
 
     <TextView
-        android:id="@+id/brand_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Brand"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <Spinner
-        android:id="@+id/brand_dropdown"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/inputfield_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        android:minHeight="48dp"
-        app:layout_constraintTop_toBottomOf="@id/brand_label"/>
-
+        android:textColor="@color/primaryBlue"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="35sp"
+        android:text="Create new car"/>
     <TextView
-        android:id="@+id/model_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="Model"
-        android:textSize="17sp"
+        android:text="Car informations"
+        android:layout_weight="3"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/brand_dropdown"/>
-    <Spinner
-        android:id="@+id/model_dropdown"
+
+        android:textColor="@color/black" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/inputfield_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        android:minHeight="48dp"
-        app:layout_constraintTop_toBottomOf="@id/model_label"/>
+        android:background="@drawable/spz_backgound_black"
+        android:padding="5dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/brand_label"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Brand"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/brand_dropdown"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/model_label"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="5dp"
+                android:text="Model"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/model_dropdown"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/regPlate_label"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Registration plate"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/regPlate_inputText"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:spinnerMode="dropdown"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".50"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/price_label"
+                android:layout_width="145dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:text="Price per day"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/price_inputText"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:spinnerMode="dropdown"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/whole_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/model_dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         >
+            <TextView
+                android:id="@+id/carSpecs_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Car specs"
+                android:layout_weight="3"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/carSpecs_label"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Car specs"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="5dp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/model_dropdown"/>
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/spz_backgound_black"
+            android:padding="5dp"
             android:orientation="vertical"
             android:visibility="visible"
             >
@@ -208,28 +285,31 @@
                     android:layout_weight=".50"
                     android:gravity="center"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/fuel_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/fuel_icon" />
 
                     <TextView
                         android:id="@+id/fuel_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Fuel:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/fuel_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
+                        android:spinnerMode="dropdown"
                         android:layout_marginEnd="5dp"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -243,28 +323,30 @@
                     >
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/body_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/body_icon" />
 
                     <TextView
                         android:id="@+id/body_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Body:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/body_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:spinnerMode="dropdown"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
@@ -275,29 +357,32 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/seats_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/seats_icon" />
 
                     <TextView
                         android:id="@+id/seats_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Seats:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/seats_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
@@ -308,30 +393,33 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/shifter_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/shifter_icon" />
 
 
                     <TextView
                         android:id="@+id/shifter_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Shifter:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/shifter_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:spinnerMode="dropdown"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
@@ -344,25 +432,26 @@
                     >
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/color_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/color_icon" />
 
                     <TextView
                         android:id="@+id/color_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Color:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/color_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
@@ -376,29 +465,32 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/year_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/year_icon" />
 
                     <TextView
                         android:id="@+id/year_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Year:    "
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/year_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
@@ -409,29 +501,32 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/miles_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/miles_icon" />
 
                     <TextView
                         android:id="@+id/miles_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Miles:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/miles_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:hint="km"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -443,29 +538,32 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/weight_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/weight_icon" />
 
                     <TextView
                         android:id="@+id/weight_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Weight:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/weight_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:hint="kg"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -477,29 +575,32 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/power_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/power_icon" />
 
                     <TextView
                         android:id="@+id/power_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Power:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/power_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:hint="kW"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -511,30 +612,33 @@
                     android:gravity="center"
                     android:layout_weight=".50"
                     >
+
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/consumption_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/consumption_icon" />
 
                     <TextView
                         android:id="@+id/consumption_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Consumption:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/consumption_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:hint="l/100km"
+                        android:inputType="number"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
                         android:textSize="12sp" />
@@ -547,28 +651,30 @@
                     >
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/fuel_capacity_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/fuel_capacity_icon" />
 
                     <TextView
                         android:id="@+id/fuel_capacity_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Fuel capacity:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/fuel_capacity_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:hint="l"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -582,28 +688,30 @@
                     >
 
                     <ImageView
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:src="@drawable/engine_icon"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/engine_icon" />
 
                     <TextView
                         android:id="@+id/engine_label"
-                        android:layout_width="110dp"
+                        android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
                         android:text="Engine:"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <EditText
                         android:id="@+id/engine_inputText"
-                        android:layout_width="200dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
+                        android:inputType="number"
                         android:hint="ccm"
                         android:paddingStart="10dp"
                         android:textAlignment="textEnd"
@@ -613,137 +721,150 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:id="@+id/show_specs"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/plus"
-        app:layout_constraintEnd_toEndOf="@id/whole_layout"
-        app:layout_constraintTop_toTopOf="@id/whole_layout"
-        />
-
-
-
-    <TextView
-        android:id="@+id/regPlate_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="Registration plate"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/whole_layout"/>
-
-    <EditText
-        android:id="@+id/regPlate_inputText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/inputfield_background"
-        android:hint="Enter registration plate"
-        android:paddingStart="10dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regPlate_label"/>
-
-    <TextView
-        android:id="@+id/price_label"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
-        android:text="Price per day"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/regPlate_inputText"/>
-
-    <EditText
-        android:id="@+id/price_inputText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/inputfield_background"
-        android:hint="Enter price per day"
-        android:paddingStart="10dp"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/price_label"/>
 
     <TextView
         android:id="@+id/AttachImages_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginTop="12dp"
         android:text="Attach images"
-        android:textSize="17sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/price_inputText"/>
+        android:textColor="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintEnd_toEndOf="@+id/price_inputText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/price_inputText"
-        app:layout_constraintTop_toBottomOf="@+id/AttachImages_label" />
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:background="@drawable/spz_backgound_black"
+        />
 
     <TextView
-        android:id="@+id/showmap"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/inputfield_background"
         android:text="Enter location"
-        android:padding="10dp"
-        android:paddingStart="40dp"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/recycler_view"
-        app:layout_constraintStart_toStartOf="@+id/recycler_view"
-        app:layout_constraintTop_toBottomOf="@id/recycler_view"/>
+        android:layout_weight="3"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.mapbox.maps.MapView
+                android:id="@+id/create_car_map"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/imagePin"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="40dp"
+                android:elevation="40dp"
+                android:src="@drawable/img"
+                app:layout_constraintBottom_toBottomOf="@id/create_car_map"
+                app:layout_constraintEnd_toEndOf="@id/create_car_map"
+                app:layout_constraintStart_toStartOf="@id/create_car_map"
+                app:layout_constraintTop_toTopOf="@id/create_car_map" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/showmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="5dp"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Terms of loan"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/spz_backgound_black"
+        android:padding="5dp"
+        >
+        <CheckBox
+            android:id="@+id/chceck_box1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textSize="16sp"
+            android:text="Driver is required to be older than 25"
+            />
+        <CheckBox
+            android:id="@+id/chceck_box2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textSize="16sp"
+            android:text="Toll sticker"
+            />
+        <CheckBox
+            android:id="@+id/chceck_box3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textSize="16sp"
+            android:text="Trip abroad"
+            />
+        <CheckBox
+            android:id="@+id/chceck_box4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:textSize="16sp"
+            android:text="Pets allowed"
+            />
+
+
+    </LinearLayout>
+
 
 
     <Button
         android:id="@+id/register_car_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
         android:background="@color/primaryBlue"
         android:minHeight="48dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="Register car"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/showmap" />
+        android:textSize="20sp"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

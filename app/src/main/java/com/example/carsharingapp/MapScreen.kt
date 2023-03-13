@@ -131,7 +131,6 @@ class MapScreen : AppCompatActivity(),PermissionsListener,NavigationView.OnNavig
         }
 
         binding?.rentCar?.setOnClickListener {
-
             val intent = Intent(applicationContext,RentActivity::class.java)
             ServiceBuilder.actualCarModel = carModel
             startActivity(intent)
@@ -179,6 +178,7 @@ class MapScreen : AppCompatActivity(),PermissionsListener,NavigationView.OnNavig
 
 
     fun fillCars(){
+        carArray.clear()
         val responde = ServiceBuilder.buildService(APIInterface :: class.java)
         responde.recieveCars(ServiceBuilder.currentUser!!.token).enqueue(object : Callback<List<Cars>>{
             override fun onResponse(
@@ -312,6 +312,11 @@ class MapScreen : AppCompatActivity(),PermissionsListener,NavigationView.OnNavig
     override fun onStart() {
         super.onStart()
         mapView?.onStart()
+    }
+
+    override fun onRestart() {
+        onMapReady()
+        super.onRestart()
     }
 
     override fun onStop() {

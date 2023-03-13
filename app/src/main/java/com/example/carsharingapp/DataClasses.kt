@@ -1,11 +1,29 @@
 package com.example.carsharingapp
 
+import java.time.LocalDate
+
 data class RegistrationUser(
     var first_name:String,
     var last_name:String,
     var email:String,
     var phone_number:String,
     var password:String
+)
+
+data class Dates(
+    var value:Int,
+    var date: LocalDate,
+    var disabled:Boolean = false
+)
+
+data class rangeDatesResponse(
+    var start_date: String,
+    var end_date: String
+)
+
+data class rangeDates(
+    var start_date: LocalDate,
+    var end_date: LocalDate
 )
 
 data class Response(
@@ -82,7 +100,7 @@ data class Models(
 
 
 data class CarSpecs(
-    var icon:Int,
+    var id:Int,
     var label:String,
     var value:String,
     var unit:String
@@ -95,9 +113,9 @@ data class CarImages(
     var images:Array<String>
 )
 
-data class Terms(
+data class CarTerms(
     var label:String,
-    var value:Boolean
+    var value:Int
 )
 
 data class postSpecs(
@@ -105,9 +123,30 @@ data class postSpecs(
     var list: ArrayList<Specs>
 )
 
+data class postTerms(
+    var car_id:Int,
+    var list:ArrayList<Terms>
+)
+
+data class ResponseSpecs(
+    var specs: List<CarSpecs>,
+    var terms: List<CarTerms>
+)
 data class Specs(
     var spec_id:Int,
     var value: String
+)
+
+data class Terms(
+    var term_id:Int,
+    var value: Int
+)
+
+data class RentCar(
+    var car_id:Int,
+    var email:String,
+    var start_date:String,
+    var end_date: String
 )
 
 

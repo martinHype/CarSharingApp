@@ -43,9 +43,22 @@ interface APIInterface {
 
     @Headers("Content-Type: application/json")
     @POST("api/cars/car_specs.php")
-    fun getSpecs(@Header("Token") token:String,@Body carId:CarId) :Call<List<CarSpecs>>
+    fun getSpecs(@Header("Token") token:String,@Body carId:CarId) :Call<ResponseSpecs>
 
     @Headers("Content-Type: application/json")
     @POST("api/cars/add_specs.php")
     fun addSpecs(@Header("Token") token:String,@Body postSpecs:postSpecs) :Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/cars/add_terms.php")
+    fun addTerms(@Header("Token") token:String,@Body postTerms: postTerms) :Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/cars/add_rental.php")
+    fun rentCar(@Header("Token") token:String,@Body rentCar: RentCar):Call<Response>
+
+    @Headers("Content-Type: application/json")
+    @POST("api/cars/rented_days.php")
+    fun getRentedDays(@Header("Token") token:String,@Body carId: CarId):Call<List<rangeDatesResponse>>
+
 }
